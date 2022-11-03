@@ -1,9 +1,41 @@
 ---
-title: "About"
+title: "About Me"
 ---
 
-### About this site
+### Jia Ji
 
-Sometimes you need to say a bit about the site -- how it was made, where it's hosted, where the source code can be found. 
+### Education
 
-If this is for a project or analysis, I recommend giving some details about the R package versions that you used to create the content.
+Columbia University	                    09/2021-Present
+
+	Expected Degree: M.S. in Biostatistics 
+
+Sichuan University	                    09/2017-06/2021
+
+	First Degree: B.S. in Computational Biology
+	
+	Second Degree: B.Eng. in Software Engineering
+	
+	Award: Scholarship of Sichuan University, Fall 2019
+
+### SKILLS
+
+Programming Languages
+  
+  Proficient: Python, R
+  
+  Experienced: SAS, MATLAB, Shell Scripting, SQL, JavaScript, HTML 
+  
+  Basic: TypeScript, C, LaTeX, jQuery
+
+Linux Tools	
+  CMake, Git, VI
+
+Microsoft Tools	 
+  Microsoft Office Suite, IntelliJ IDEA, MySQL Server Bioinformatics Software	 MEGA, HMMER, Mauve, VCFtools, PLINK, Velvet, Krait, ACT Other Skills	Agile Methodology, Java Web Development, Machine Learning
+
+## Website
+
+My Github Account Page: [https://github.com/jj936/](https://github.com/jj936/) 
+
+Contact me: [jj3205@cumc.columbia.edu](mailto:<jj3205@cumc.columbia.edu>)

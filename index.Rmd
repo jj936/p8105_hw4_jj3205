@@ -1,7 +1,11 @@
 ---
-title: "Holy cow!"
+title: "Home page"
 ---
 
-### I have a webpage!
+### Biography
 
-And I can put all kinds of stuff on it!
+Hi. I'm Jia Ji, a second-year graduate student in Columbia University. 
+
+### Resume
+
+My resume is [here](about.html).

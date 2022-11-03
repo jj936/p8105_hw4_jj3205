@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Jia Ji (jj3205)" />
+
+<meta name="date" content="2022-11-03" />
+
+<title>Problem2</title>
+
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.4/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.0/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.5.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.5.1/plotly-latest.min.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Home</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="mailto:&lt;jj3205@cumc.columbia.edu&gt;">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="http://github.com/jj936/">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Problem2</h1>
+<h4 class="author">Jia Ji (jj3205)</h4>
+<h4 class="date">2022-11-03</h4>
+
+</div>
+
+
+<div id="data-description" class="section level2">
+<h2>Data Description</h2>
+<p>The DOHMH New York City Restaurant Inspection Results dataset
+contains roughly 400,000 rows and 26 columns. There is information on
+restaurant name and location, type of food, inspection date, and details
+on violation codes, total scores, and associated grades. The data is
+longitudinal in nature, with multiple rows per restaurant representing
+inspections over time.</p>
+<pre class="r"><code>get_all_inspections = function(url) {
+  
+  all_inspections = vector(&quot;list&quot;, length = 0)
+  
+  loop_index = 1
+  chunk_size = 50000
+  DO_NEXT = TRUE
+  
+  while (DO_NEXT) {
+    message(&quot;Getting data, page &quot;, loop_index)
+    
+    all_inspections[[loop_index]] = 
+      GET(url,
+          query = list(`$order` = &quot;zipcode&quot;,
+                       `$limit` = chunk_size,
+                       `$offset` = as.integer((loop_index - 1) * chunk_size)
+                       )
+          ) %&gt;%
+      content(&quot;text&quot;) %&gt;%
+      fromJSON() %&gt;%
+      as_tibble()
+    
+    DO_NEXT = dim(all_inspections[[loop_index]])[1] == chunk_size
+    loop_index = loop_index + 1
+  }
+  
+  all_inspections
+  
+}
+url = &quot;https://data.cityofnewyork.us/resource/43nn-pn8j.json&quot;
+nyc_inspections = get_all_inspections(url) %&gt;%
+  bind_rows() </code></pre>
+<pre><code>## Getting data, page 1</code></pre>
+<pre><code>## Getting data, page 2</code></pre>
+<pre><code>## Getting data, page 3</code></pre>
+<pre><code>## Getting data, page 4</code></pre>
+<pre><code>## Getting data, page 5</code></pre>
+</div>
+<div id="column" class="section level2" data-width="650">
+<h2>Column</h2>
+<div id="plot-1" class="section level3">
+<h3>Plot 1</h3>
+<pre class="r"><code>## Examine top 20 cuisine based on average score in Manhattan
+## Clean missing data and score 0 
+mean_score_manhattan = nyc_inspections %&gt;% 
+  mutate(score = as.numeric(score),
+         cuisine_description = recode(cuisine_description, `Latin (Cuban, Dominican, Puerto Rican, South &amp; Central American)` = &#39;Latin&#39;)) %&gt;% 
+  rename(cuisine = cuisine_description) %&gt;% 
+  filter(boro == &quot;Manhattan&quot;, !is.na(score), score != 0) %&gt;% 
+  mutate(se = std.error(score)) %&gt;% 
+  group_by(cuisine, se) %&gt;% 
+  summarise(mean_score = mean(score)) %&gt;%
+  mutate(
+    se_min = mean_score - se,
+    se_max = mean_score + se) %&gt;% 
+  arrange(desc(mean_score)) %&gt;% 
+  head(20)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;cuisine&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>Plot_A = mean_score_manhattan %&gt;% 
+  ggplot(aes(x = reorder(cuisine, mean_score), y = mean_score, color = cuisine)) + 
+  geom_point() + geom_errorbar(aes(ymin = se_min, ymax = se_max)) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1), 
+        legend.position=&quot;right&quot;) +
+  labs(
+    title = &quot;Top 20 cuisine in Manhattan&quot;,
+    x = &quot;Cuisine&quot;,
+    y = &quot;Average Score&quot;
+  )
+ggplotly(Plot_A)</code></pre>
+<div id="htmlwidget-12733d1daf2e640a7721" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-12733d1daf2e640a7721">{"x":{"data":[{"x":[17],"y":[35.987987987988],"text":"reorder(cuisine, mean_score): African<br />mean_score: 35.98799<br />cuisine: African","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"African","legendgroup":"African","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[19],"y":[37.3829787234043],"text":"reorder(cuisine, mean_score): Bangladeshi<br />mean_score: 37.38298<br />cuisine: Bangladeshi","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(234,131,49,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(234,131,49,1)"}},"hoveron":"points","name":"Bangladeshi","legendgroup":"Bangladeshi","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4],"y":[25.3191964285714],"text":"reorder(cuisine, mean_score): Caribbean<br />mean_score: 25.31920<br />cuisine: Caribbean","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(216,144,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(216,144,0,1)"}},"hoveron":"points","name":"Caribbean","legendgroup":"Caribbean","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[15],"y":[28.8804018195603],"text":"reorder(cuisine, mean_score): Chinese<br />mean_score: 28.88040<br />cuisine: Chinese","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(192,155,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(192,155,0,1)"}},"hoveron":"points","name":"Chinese","legendgroup":"Chinese","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7],"y":[25.6348314606742],"text":"reorder(cuisine, mean_score): Chinese/Japanese<br />mean_score: 25.63483<br />cuisine: Chinese/Japanese","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(163,165,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(163,165,0,1)"}},"hoveron":"points","name":"Chinese/Japanese","legendgroup":"Chinese/Japanese","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[16],"y":[30.521327014218],"text":"reorder(cuisine, mean_score): Eastern European<br />mean_score: 30.52133<br />cuisine: Eastern European","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(124,174,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(124,174,0,1)"}},"hoveron":"points","name":"Eastern European","legendgroup":"Eastern European","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2],"y":[24.8129496402878],"text":"reorder(cuisine, mean_score): Ethiopian<br />mean_score: 24.81295<br />cuisine: Ethiopian","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(57,182,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(57,182,0,1)"}},"hoveron":"points","name":"Ethiopian","legendgroup":"Ethiopian","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[20],"y":[46.8607594936709],"text":"reorder(cuisine, mean_score): Filipino<br />mean_score: 46.86076<br />cuisine: Filipino","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,187,78,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,187,78,1)"}},"hoveron":"points","name":"Filipino","legendgroup":"Filipino","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10],"y":[26.8771551724138],"text":"reorder(cuisine, mean_score): Greek<br />mean_score: 26.87716<br />cuisine: Greek","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,125,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,125,1)"}},"hoveron":"points","name":"Greek","legendgroup":"Greek","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3],"y":[25.0177232447171],"text":"reorder(cuisine, mean_score): Indian<br />mean_score: 25.01772<br />cuisine: Indian","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,193,163,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,193,163,1)"}},"hoveron":"points","name":"Indian","legendgroup":"Indian","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[18],"y":[36.4090909090909],"text":"reorder(cuisine, mean_score): Indonesian<br />mean_score: 36.40909<br />cuisine: Indonesian","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,191,196,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,196,1)"}},"hoveron":"points","name":"Indonesian","legendgroup":"Indonesian","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8],"y":[26.2641118591403],"text":"reorder(cuisine, mean_score): Latin American<br />mean_score: 26.26411<br />cuisine: Latin American","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,186,224,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,186,224,1)"}},"hoveron":"points","name":"Latin American","legendgroup":"Latin American","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1],"y":[24.7326732673267],"text":"reorder(cuisine, mean_score): Moroccan<br />mean_score: 24.73267<br />cuisine: Moroccan","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,176,246,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,176,246,1)"}},"hoveron":"points","name":"Moroccan","legendgroup":"Moroccan","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[14],"y":[28.765625],"text":"reorder(cuisine, mean_score): New American<br />mean_score: 28.76562<br />cuisine: New American","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(53,162,255,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(53,162,255,1)"}},"hoveron":"points","name":"New American","legendgroup":"New American","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[13],"y":[28.2113821138211],"text":"reorder(cuisine, mean_score): Russian<br />mean_score: 28.21138<br />cuisine: Russian","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(149,144,255,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(149,144,255,1)"}},"hoveron":"points","name":"Russian","legendgroup":"Russian","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[12],"y":[27.7620253164557],"text":"reorder(cuisine, mean_score): Southeast Asian<br />mean_score: 27.76203<br />cuisine: Southeast Asian","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(199,124,255,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(199,124,255,1)"}},"hoveron":"points","name":"Southeast Asian","legendgroup":"Southeast Asian","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5],"y":[25.3254486133768],"text":"reorder(cuisine, mean_score): Spanish<br />mean_score: 25.32545<br />cuisine: Spanish","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(231,107,243,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(231,107,243,1)"}},"hoveron":"points","name":"Spanish","legendgroup":"Spanish","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9],"y":[26.5244582043344],"text":"reorder(cuisine, mean_score): Thai<br />mean_score: 26.52446<br />cuisine: Thai","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(250,98,219,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(250,98,219,1)"}},"hoveron":"points","name":"Thai","legendgroup":"Thai","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11],"y":[27.1652173913043],"text":"reorder(cuisine, mean_score): Turkish<br />mean_score: 27.16522<br />cuisine: Turkish","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,98,188,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,98,188,1)"}},"hoveron":"points","name":"Turkish","legendgroup":"Turkish","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6],"y":[25.520942408377],"text":"reorder(cuisine, mean_score): Vegetarian<br />mean_score: 25.52094<br />cuisine: Vegetarian","type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(255,106,152,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(255,106,152,1)"}},"hoveron":"points","name":"Vegetarian","legendgroup":"Vegetarian","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[17],"y":[35.987987987988],"text":"reorder(cuisine, mean_score): African<br />mean_score: 35.98799<br />cuisine: African<br />se_min: 35.93095<br />se_max: 36.04503","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.0570409166900916],"arrayminus":[0.0570409166900916],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(248,118,109,1)"},"name":"African","legendgroup":"African","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[19],"y":[37.3829787234043],"text":"reorder(cuisine, mean_score): Bangladeshi<br />mean_score: 37.38298<br />cuisine: Bangladeshi<br />se_min: 37.32594<br />se_max: 37.44002","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.0570409166900916],"arrayminus":[0.0570409166900916],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(234,131,49,1)"},"name":"Bangladeshi","legendgroup":"Bangladeshi","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[4],"y":[25.3191964285714],"text":"reorder(cuisine, mean_score): Caribbean<br />mean_score: 25.31920<br />cuisine: Caribbean<br />se_min: 25.26216<br />se_max: 25.37624","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485149,"symmetric":false,"color":"rgba(216,144,0,1)"},"name":"Caribbean","legendgroup":"Caribbean","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[15],"y":[28.8804018195603],"text":"reorder(cuisine, mean_score): Chinese<br />mean_score: 28.88040<br />cuisine: Chinese<br />se_min: 28.82336<br />se_max: 28.93744","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(192,155,0,1)"},"name":"Chinese","legendgroup":"Chinese","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[7],"y":[25.6348314606742],"text":"reorder(cuisine, mean_score): Chinese/Japanese<br />mean_score: 25.63483<br />cuisine: Chinese/Japanese<br />se_min: 25.57779<br />se_max: 25.69187","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485149,"symmetric":false,"color":"rgba(163,165,0,1)"},"name":"Chinese/Japanese","legendgroup":"Chinese/Japanese","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[16],"y":[30.521327014218],"text":"reorder(cuisine, mean_score): Eastern European<br />mean_score: 30.52133<br />cuisine: Eastern European<br />se_min: 30.46429<br />se_max: 30.57837","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(124,174,0,1)"},"name":"Eastern European","legendgroup":"Eastern European","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[2],"y":[24.8129496402878],"text":"reorder(cuisine, mean_score): Ethiopian<br />mean_score: 24.81295<br />cuisine: Ethiopian<br />se_min: 24.75591<br />se_max: 24.86999","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485149,"symmetric":false,"color":"rgba(57,182,0,1)"},"name":"Ethiopian","legendgroup":"Ethiopian","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[20],"y":[46.8607594936709],"text":"reorder(cuisine, mean_score): Filipino<br />mean_score: 46.86076<br />cuisine: Filipino<br />se_min: 46.80372<br />se_max: 46.91780","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.0570409166900916],"arrayminus":[0.0570409166900916],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(0,187,78,1)"},"name":"Filipino","legendgroup":"Filipino","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[10],"y":[26.8771551724138],"text":"reorder(cuisine, mean_score): Greek<br />mean_score: 26.87716<br />cuisine: Greek<br />se_min: 26.82011<br />se_max: 26.93420","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(0,191,125,1)"},"name":"Greek","legendgroup":"Greek","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[3],"y":[25.0177232447171],"text":"reorder(cuisine, mean_score): Indian<br />mean_score: 25.01772<br />cuisine: Indian<br />se_min: 24.96068<br />se_max: 25.07476","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485149,"symmetric":false,"color":"rgba(0,193,163,1)"},"name":"Indian","legendgroup":"Indian","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[18],"y":[36.4090909090909],"text":"reorder(cuisine, mean_score): Indonesian<br />mean_score: 36.40909<br />cuisine: Indonesian<br />se_min: 36.35205<br />se_max: 36.46613","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.0570409166900916],"arrayminus":[0.0570409166900916],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(0,191,196,1)"},"name":"Indonesian","legendgroup":"Indonesian","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[8],"y":[26.2641118591403],"text":"reorder(cuisine, mean_score): Latin American<br />mean_score: 26.26411<br />cuisine: Latin American<br />se_min: 26.20707<br />se_max: 26.32115","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(0,186,224,1)"},"name":"Latin American","legendgroup":"Latin American","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1],"y":[24.7326732673267],"text":"reorder(cuisine, mean_score): Moroccan<br />mean_score: 24.73267<br />cuisine: Moroccan<br />se_min: 24.67563<br />se_max: 24.78971","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485148,"symmetric":false,"color":"rgba(0,176,246,1)"},"name":"Moroccan","legendgroup":"Moroccan","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[14],"y":[28.765625],"text":"reorder(cuisine, mean_score): New American<br />mean_score: 28.76562<br />cuisine: New American<br />se_min: 28.70858<br />se_max: 28.82267","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(53,162,255,1)"},"name":"New American","legendgroup":"New American","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[13],"y":[28.2113821138211],"text":"reorder(cuisine, mean_score): Russian<br />mean_score: 28.21138<br />cuisine: Russian<br />se_min: 28.15434<br />se_max: 28.26842","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(149,144,255,1)"},"name":"Russian","legendgroup":"Russian","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[12],"y":[27.7620253164557],"text":"reorder(cuisine, mean_score): Southeast Asian<br />mean_score: 27.76203<br />cuisine: Southeast Asian<br />se_min: 27.70498<br />se_max: 27.81907","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(199,124,255,1)"},"name":"Southeast Asian","legendgroup":"Southeast Asian","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[5],"y":[25.3254486133768],"text":"reorder(cuisine, mean_score): Spanish<br />mean_score: 25.32545<br />cuisine: Spanish<br />se_min: 25.26841<br />se_max: 25.38249","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485149,"symmetric":false,"color":"rgba(231,107,243,1)"},"name":"Spanish","legendgroup":"Spanish","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[9],"y":[26.5244582043344],"text":"reorder(cuisine, mean_score): Thai<br />mean_score: 26.52446<br />cuisine: Thai<br />se_min: 26.46742<br />se_max: 26.58150","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(250,98,219,1)"},"name":"Thai","legendgroup":"Thai","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[11],"y":[27.1652173913043],"text":"reorder(cuisine, mean_score): Turkish<br />mean_score: 27.16522<br />cuisine: Turkish<br />se_min: 27.10818<br />se_max: 27.22226","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485147,"symmetric":false,"color":"rgba(255,98,188,1)"},"name":"Turkish","legendgroup":"Turkish","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[6],"y":[25.520942408377],"text":"reorder(cuisine, mean_score): Vegetarian<br />mean_score: 25.52094<br />cuisine: Vegetarian<br />se_min: 25.46390<br />se_max: 25.57798","type":"scatter","mode":"lines","opacity":1,"line":{"color":"transparent"},"error_y":{"array":[0.057040916690088],"arrayminus":[0.057040916690088],"type":"data","width":7.48514851485149,"symmetric":false,"color":"rgba(255,106,152,1)"},"name":"Vegetarian","legendgroup":"Vegetarian","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":78.0014614759142,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Top 20 cuisine in Manhattan","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,20.6],"tickmode":"array","ticktext":["Moroccan","Ethiopian","Indian","Caribbean","Spanish","Vegetarian","Chinese/Japanese","Latin American","Thai","Greek","Turkish","Southeast Asian","Russian","New American","Chinese","Eastern European","African","Indonesian","Bangladeshi","Filipino"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20],"categoryorder":"array","categoryarray":["Moroccan","Ethiopian","Indian","Caribbean","Spanish","Vegetarian","Chinese/Japanese","Latin American","Thai","Greek","Turkish","Southeast Asian","Russian","New American","Chinese","Eastern European","African","Indonesian","Bangladeshi","Filipino"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-45,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Cuisine","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[23.5635239476504,48.0299088133472],"tickmode":"array","ticktext":["25","30","35","40","45"],"tickvals":[25,30,35,40,45],"categoryorder":"array","categoryarray":["25","30","35","40","45"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Average Score","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"cuisine","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"176e96326f6de":{"x":{},"y":{},"colour":{},"type":"scatter"},"176e913199bad":{"x":{},"y":{},"colour":{},"ymin":{},"ymax":{}}},"cur_data":"176e96326f6de","visdat":{"176e96326f6de":["function (y) ","x"],"176e913199bad":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+<div id="column-1" class="section level2" data-width="350">
+<h2>Column</h2>
+<div id="plot-2" class="section level3">
+<h3>Plot 2</h3>
+<pre class="r"><code>## Examine count of different grades in each boro
+## Clean missing value of boro and grade
+Plot_B = nyc_inspections %&gt;% 
+  filter(boro != &quot;0&quot;, !is.na(grade)) %&gt;% 
+  group_by(boro, grade) %&gt;% 
+  summarise(n = n()) %&gt;% 
+  ggplot(aes(x = grade, y = n)) +
+  geom_bar(aes(fill = boro), stat=&quot;identity&quot;, colour=&quot;black&quot;) +
+  theme(axis.text.x = element_text(hjust = 1), legend.position=&quot;right&quot;) + 
+  facet_wrap(~boro, nrow = 1) + 
+  theme(legend.position = &quot;none&quot;) + 
+  ggtitle(&quot;The distribution of grades in each section&quot;)</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;boro&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>ggplotly(Plot_B)</code></pre>
+<div id="htmlwidget-20cb7c5c8b86f52d08c2" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-20cb7c5c8b86f52d08c2">{"x":{"data":[{"orientation":"v","width":[0.9,0.9,0.9,0.9,0.9,0.9],"base":[0,0,0,0,0,0],"x":[1,2,3,4,5,6],"y":[7670,1280,505,876,79,391],"text":["grade: A<br />n:  7670<br />boro: Bronx","grade: B<br />n:  1280<br />boro: Bronx","grade: C<br />n:   505<br />boro: Bronx","grade: N<br />n:   876<br />boro: Bronx","grade: P<br />n:    79<br />boro: Bronx","grade: Z<br />n:   391<br />boro: Bronx"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Bronx","legendgroup":"Bronx","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.9,0.9,0.9,0.9,0.9,0.9],"base":[0,0,0,0,0,0],"x":[1,2,3,4,5,6],"y":[22149,2866,1185,1802,330,1437],"text":["grade: A<br />n: 22149<br />boro: Brooklyn","grade: B<br />n:  2866<br />boro: Brooklyn","grade: C<br />n:  1185<br />boro: Brooklyn","grade: N<br />n:  1802<br />boro: Brooklyn","grade: P<br />n:   330<br />boro: Brooklyn","grade: Z<br />n:  1437<br />boro: Brooklyn"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(163,165,0,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Brooklyn","legendgroup":"Brooklyn","showlegend":true,"xaxis":"x2","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.9,0.9,0.9,0.9,0.9,0.9],"base":[0,0,0,0,0,0],"x":[1,2,3,4,5,6],"y":[32956,3753,1645,2981,330,1868],"text":["grade: A<br />n: 32956<br />boro: Manhattan","grade: B<br />n:  3753<br />boro: Manhattan","grade: C<br />n:  1645<br />boro: Manhattan","grade: N<br />n:  2981<br />boro: Manhattan","grade: P<br />n:   330<br />boro: Manhattan","grade: Z<br />n:  1868<br />boro: Manhattan"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,191,125,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Manhattan","legendgroup":"Manhattan","showlegend":true,"xaxis":"x3","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.9,0.9,0.9,0.9,0.9,0.9],"base":[0,0,0,0,0,0],"x":[1,2,3,4,5,6],"y":[20510,2659,1401,1831,243,898],"text":["grade: A<br />n: 20510<br />boro: Queens","grade: B<br />n:  2659<br />boro: Queens","grade: C<br />n:  1401<br />boro: Queens","grade: N<br />n:  1831<br />boro: Queens","grade: P<br />n:   243<br />boro: Queens","grade: Z<br />n:   898<br />boro: Queens"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(0,176,246,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Queens","legendgroup":"Queens","showlegend":true,"xaxis":"x4","yaxis":"y","hoverinfo":"text","frame":null},{"orientation":"v","width":[0.9,0.9,0.9,0.9,0.9,0.9],"base":[0,0,0,0,0,0],"x":[1,2,3,4,5,6],"y":[3422,315,103,317,33,108],"text":["grade: A<br />n:  3422<br />boro: Staten Island","grade: B<br />n:   315<br />boro: Staten Island","grade: C<br />n:   103<br />boro: Staten Island","grade: N<br />n:   317<br />boro: Staten Island","grade: P<br />n:    33<br />boro: Staten Island","grade: Z<br />n:   108<br />boro: Staten Island"],"type":"bar","textposition":"none","marker":{"autocolorscale":false,"color":"rgba(231,107,243,1)","line":{"width":1.88976377952756,"color":"rgba(0,0,0,1)"}},"name":"Staten Island","legendgroup":"Staten Island","showlegend":true,"xaxis":"x5","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":55.4520547945205,"r":7.30593607305936,"b":40.1826484018265,"l":54.7945205479452},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"The distribution of grades in each section","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,0.189128071319852],"automargin":true,"type":"linear","autorange":false,"range":[0.4,6.6],"tickmode":"array","ticktext":["A","B","C","N","P","Z"],"tickvals":[1,2,3,4,5,6],"categoryorder":"array","categoryarray":["A","B","C","N","P","Z"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"annotations":[{"text":"grade","x":0.5,"y":0,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"top","annotationType":"axis","yshift":-21.9178082191781},{"text":"n","x":0,"y":0.5,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"xref":"paper","yref":"paper","textangle":-90,"xanchor":"right","yanchor":"center","annotationType":"axis","xshift":-39.4520547945205},{"text":"Bronx","x":0.0945640356599261,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Brooklyn","x":0.3,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Manhattan","x":0.5,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Queens","x":0.7,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"},{"text":"Staten Island","x":0.905435964340074,"y":1,"showarrow":false,"ax":0,"ay":0,"font":{"color":"rgba(26,26,26,1)","family":"","size":11.689497716895},"xref":"paper","yref":"paper","textangle":-0,"xanchor":"center","yanchor":"bottom"}],"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[-1647.8,34603.8],"tickmode":"array","ticktext":["0","10000","20000","30000"],"tickvals":[-2.27373675443232e-13,10000,20000,30000],"categoryorder":"array","categoryarray":["0","10000","20000","30000"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":"","hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":0.189128071319852,"y0":0,"y1":1},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0,"x1":0.189128071319852,"y0":0,"y1":23.37899543379,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.210871928680148,"x1":0.389128071319852,"y0":0,"y1":1},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0.210871928680148,"x1":0.389128071319852,"y0":0,"y1":23.37899543379,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.410871928680148,"x1":0.589128071319852,"y0":0,"y1":1},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0.410871928680148,"x1":0.589128071319852,"y0":0,"y1":23.37899543379,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.610871928680148,"x1":0.789128071319852,"y0":0,"y1":1},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0.610871928680148,"x1":0.789128071319852,"y0":0,"y1":23.37899543379,"yanchor":1,"ysizemode":"pixel"},{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0.810871928680148,"x1":1,"y0":0,"y1":1},{"type":"rect","fillcolor":"rgba(217,217,217,1)","line":{"color":"transparent","width":0.66417600664176,"linetype":"solid"},"yref":"paper","xref":"paper","x0":0.810871928680148,"x1":1,"y0":0,"y1":23.37899543379,"yanchor":1,"ysizemode":"pixel"}],"xaxis2":{"type":"linear","autorange":false,"range":[0.4,6.6],"tickmode":"array","ticktext":["A","B","C","N","P","Z"],"tickvals":[1,2,3,4,5,6],"categoryorder":"array","categoryarray":["A","B","C","N","P","Z"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.210871928680148,0.389128071319852],"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"xaxis3":{"type":"linear","autorange":false,"range":[0.4,6.6],"tickmode":"array","ticktext":["A","B","C","N","P","Z"],"tickvals":[1,2,3,4,5,6],"categoryorder":"array","categoryarray":["A","B","C","N","P","Z"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.410871928680148,0.589128071319852],"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"xaxis4":{"type":"linear","autorange":false,"range":[0.4,6.6],"tickmode":"array","ticktext":["A","B","C","N","P","Z"],"tickvals":[1,2,3,4,5,6],"categoryorder":"array","categoryarray":["A","B","C","N","P","Z"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.610871928680148,0.789128071319852],"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"xaxis5":{"type":"linear","autorange":false,"range":[0.4,6.6],"tickmode":"array","ticktext":["A","B","C","N","P","Z"],"tickvals":[1,2,3,4,5,6],"categoryorder":"array","categoryarray":["A","B","C","N","P","Z"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"domain":[0.810871928680148,1],"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":"","hoverformat":".2f"},"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"176e9219344f3":{"x":{},"y":{},"fill":{},"type":"bar"}},"cur_data":"176e9219344f3","visdat":{"176e9219344f3":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="plot-3" class="section level3">
+<h3>Plot 3</h3>
+<pre class="r"><code>## Examine mean score for each boro over time
+## Clean missing value first
+Plot_C = nyc_inspections %&gt;% 
+  filter(boro != &quot;0&quot;, !is.na(score)) %&gt;% 
+  mutate(
+    score = as.numeric(score),
+    year = substr(as.character(inspection_date), 1, 4)
+    ) %&gt;% 
+  group_by(year, boro) %&gt;% 
+  summarise(mean_boro = mean(score)) %&gt;% 
+  ggplot(aes(x = year, y = mean_boro, colour = boro, group = boro)) +
+  geom_point() + 
+  geom_line(size=.5) +
+  labs(
+    title = &quot;Trend of average score for each boro&quot;,
+    x = &quot;Year&quot;,
+    y = &quot;Average Score&quot;
+  )</code></pre>
+<pre><code>## `summarise()` has grouped output by &#39;year&#39;. You can override using the
+## `.groups` argument.</code></pre>
+<pre class="r"><code>ggplotly(Plot_C)</code></pre>
+<div id="htmlwidget-1c6226944a0b9606118f" style="width:672px;height:480px;" class="plotly html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1c6226944a0b9606118f">{"x":{"data":[{"x":[5,6,7,8,9,10,11,12],"y":[9,19.8076923076923,17.4837133550489,18.6276595744681,20.1863535297387,17.930198019802,21.6147695202258,23.8560704115972],"text":["year: 2015<br />mean_boro:  9.00000<br />boro: Bronx<br />boro: Bronx","year: 2016<br />mean_boro: 19.80769<br />boro: Bronx<br />boro: Bronx","year: 2017<br />mean_boro: 17.48371<br />boro: Bronx<br />boro: Bronx","year: 2018<br />mean_boro: 18.62766<br />boro: Bronx<br />boro: Bronx","year: 2019<br />mean_boro: 20.18635<br />boro: Bronx<br />boro: Bronx","year: 2020<br />mean_boro: 17.93020<br />boro: Bronx<br />boro: Bronx","year: 2021<br />mean_boro: 21.61477<br />boro: Bronx<br />boro: Bronx","year: 2022<br />mean_boro: 23.85607<br />boro: Bronx<br />boro: Bronx"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(248,118,109,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)"}},"hoveron":"points","name":"Bronx","legendgroup":"Bronx","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":1.88976377952756,"color":"rgba(248,118,109,1)","dash":"solid"},"frame":null},{"x":[5,6,7,8,9,10,11,12],"y":[20.1111111111111,15.546875,19.5135371179039,19.7535177098496,20.4098609081561,19.7635997313633,23.1341765549615,25.1519112525261],"text":["year: 2015<br />mean_boro: 20.11111<br />boro: Brooklyn<br />boro: Brooklyn","year: 2016<br />mean_boro: 15.54688<br />boro: Brooklyn<br />boro: Brooklyn","year: 2017<br />mean_boro: 19.51354<br />boro: Brooklyn<br />boro: Brooklyn","year: 2018<br />mean_boro: 19.75352<br />boro: Brooklyn<br />boro: Brooklyn","year: 2019<br />mean_boro: 20.40986<br />boro: Brooklyn<br />boro: Brooklyn","year: 2020<br />mean_boro: 19.76360<br />boro: Brooklyn<br />boro: Brooklyn","year: 2021<br />mean_boro: 23.13418<br />boro: Brooklyn<br />boro: Brooklyn","year: 2022<br />mean_boro: 25.15191<br />boro: Brooklyn<br />boro: Brooklyn"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(163,165,0,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(163,165,0,1)"}},"hoveron":"points","name":"Brooklyn","legendgroup":"Brooklyn","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":1.88976377952756,"color":"rgba(163,165,0,1)","dash":"solid"},"frame":null},{"x":[3,4,5,6,7,8,9,10,11,12],"y":[2,11,15.5909090909091,17.4737631184408,17.8168157423971,19.6393442622951,20.1526278435621,19.6666297240386,20.9953898840885,24.6444266387254],"text":["year: 2013<br />mean_boro:  2.00000<br />boro: Manhattan<br />boro: Manhattan","year: 2014<br />mean_boro: 11.00000<br />boro: Manhattan<br />boro: Manhattan","year: 2015<br />mean_boro: 15.59091<br />boro: Manhattan<br />boro: Manhattan","year: 2016<br />mean_boro: 17.47376<br />boro: Manhattan<br />boro: Manhattan","year: 2017<br />mean_boro: 17.81682<br />boro: Manhattan<br />boro: Manhattan","year: 2018<br />mean_boro: 19.63934<br />boro: Manhattan<br />boro: Manhattan","year: 2019<br />mean_boro: 20.15263<br />boro: Manhattan<br />boro: Manhattan","year: 2020<br />mean_boro: 19.66663<br />boro: Manhattan<br />boro: Manhattan","year: 2021<br />mean_boro: 20.99539<br />boro: Manhattan<br />boro: Manhattan","year: 2022<br />mean_boro: 24.64443<br />boro: Manhattan<br />boro: Manhattan"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(0,191,125,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,191,125,1)"}},"hoveron":"points","name":"Manhattan","legendgroup":"Manhattan","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":1.88976377952756,"color":"rgba(0,191,125,1)","dash":"solid"},"frame":null},{"x":[1,2,3,5,6,7,8,9,10,11,12],"y":[2,7,13.1428571428571,16.4,11.991124260355,15.9752824858757,20.0944829864552,20.40284738041,20.1205454545455,23.2042457381795,24.2552268450763],"text":["year: 2011<br />mean_boro:  2.00000<br />boro: Queens<br />boro: Queens","year: 2012<br />mean_boro:  7.00000<br />boro: Queens<br />boro: Queens","year: 2013<br />mean_boro: 13.14286<br />boro: Queens<br />boro: Queens","year: 2015<br />mean_boro: 16.40000<br />boro: Queens<br />boro: Queens","year: 2016<br />mean_boro: 11.99112<br />boro: Queens<br />boro: Queens","year: 2017<br />mean_boro: 15.97528<br />boro: Queens<br />boro: Queens","year: 2018<br />mean_boro: 20.09448<br />boro: Queens<br />boro: Queens","year: 2019<br />mean_boro: 20.40285<br />boro: Queens<br />boro: Queens","year: 2020<br />mean_boro: 20.12055<br />boro: Queens<br />boro: Queens","year: 2021<br />mean_boro: 23.20425<br />boro: Queens<br />boro: Queens","year: 2022<br />mean_boro: 24.25523<br />boro: Queens<br />boro: Queens"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(0,176,246,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(0,176,246,1)"}},"hoveron":"points","name":"Queens","legendgroup":"Queens","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":1.88976377952756,"color":"rgba(0,176,246,1)","dash":"solid"},"frame":null},{"x":[6,7,8,9,10,11,12],"y":[14.7291666666667,19.762331838565,21.7775628626692,18.9289191820837,17.8275418275418,17.5669014084507,18.9933132731528],"text":["year: 2016<br />mean_boro: 14.72917<br />boro: Staten Island<br />boro: Staten Island","year: 2017<br />mean_boro: 19.76233<br />boro: Staten Island<br />boro: Staten Island","year: 2018<br />mean_boro: 21.77756<br />boro: Staten Island<br />boro: Staten Island","year: 2019<br />mean_boro: 18.92892<br />boro: Staten Island<br />boro: Staten Island","year: 2020<br />mean_boro: 17.82754<br />boro: Staten Island<br />boro: Staten Island","year: 2021<br />mean_boro: 17.56690<br />boro: Staten Island<br />boro: Staten Island","year: 2022<br />mean_boro: 18.99331<br />boro: Staten Island<br />boro: Staten Island"],"type":"scatter","mode":"markers+lines","marker":{"autocolorscale":false,"color":"rgba(231,107,243,1)","opacity":1,"size":5.66929133858268,"symbol":"circle","line":{"width":1.88976377952756,"color":"rgba(231,107,243,1)"}},"hoveron":"points","name":"Staten Island","legendgroup":"Staten Island","showlegend":true,"xaxis":"x","yaxis":"y","hoverinfo":"text","line":{"width":1.88976377952756,"color":"rgba(231,107,243,1)","dash":"solid"},"frame":null}],"layout":{"margin":{"t":43.7625570776256,"r":7.30593607305936,"b":40.1826484018265,"l":37.2602739726027},"plot_bgcolor":"rgba(235,235,235,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187},"title":{"text":"Trend of average score for each boro","font":{"color":"rgba(0,0,0,1)","family":"","size":17.5342465753425},"x":0,"xref":"paper"},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.4,12.6],"tickmode":"array","ticktext":["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022"],"tickvals":[1,2,3,4,5,6,7,8,9,10,11,12],"categoryorder":"array","categoryarray":["2011","2012","2013","2014","2015","2016","2017","2018","2019","2020","2021","2022"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"y","title":{"text":"Year","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.842404437373694,26.3095068151524],"tickmode":"array","ticktext":["5","10","15","20","25"],"tickvals":[5,10,15,20,25],"categoryorder":"array","categoryarray":["5","10","15","20","25"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.65296803652968,"tickwidth":0.66417600664176,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.689497716895},"tickangle":-0,"showline":false,"linecolor":null,"linewidth":0,"showgrid":true,"gridcolor":"rgba(255,255,255,1)","gridwidth":0.66417600664176,"zeroline":false,"anchor":"x","title":{"text":"Average Score","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":true,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.88976377952756,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.689497716895},"title":{"text":"boro","font":{"color":"rgba(0,0,0,1)","family":"","size":14.6118721461187}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"176e92378ff8a":{"x":{},"y":{},"colour":{},"type":"scatter"},"176e95cd0cf37":{"x":{},"y":{},"colour":{}}},"cur_data":"176e92378ff8a","visdat":{"176e92378ff8a":["function (y) ","x"],"176e95cd0cf37":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.2,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+</div>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
